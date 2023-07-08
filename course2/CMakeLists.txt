@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
 project(kuiper_datawhale_course2)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
+
 find_package(benchmark REQUIRED)
 find_package(OpenMP REQUIRED)
 find_package(Armadillo REQUIRED)

@@ -165,7 +165,38 @@ void Tensor<float>::Padding(const std::vector<uint32_t>& pads,
   uint32_t pad_cols1 = pads.at(2);  // left
   uint32_t pad_cols2 = pads.at(3);  // right
 
-  // 请补充代码
+
+  // get dimension after being padding
+  uint32_t new_row_num = this->rows() + pad_rows1 + pad_rows2;
+  uint32_t new_col_num = this->cols() + pad_cols1 + pad_cols2;
+  uint32_t channel_num = this->channels();
+
+  // modify dimension
+  const arma::fcube temp_data = this->data_;
+  this->data_.set_size(new_row_num, new_col_num, channel_num);
+  if(this->raw_shapes_.size() == 3){
+    this->raw_shapes_ = {channel_num, new_row_num, new_col_num};
+  } else if(this->raw_shapes_.size() == 2){
+    this->raw_shapes_ = {new_row_num, new_col_num};
+  } else{
+    if(new_row_num > 0){
+      this->raw_shapes_ = {new_row_num, new_col_num};
+    } else {
+      this->raw_shapes_ = {new_col_num};
+    }
+  } 
+
+  // fill tensor using padding_value
+  this->Fill(padding_value);
+
+  // fill tensor use original value
+  for(int c = 0; c < channel_num; c++){
+    for(int r = pad_rows1; r < new_row_num - pad_rows2; r++){
+      for(int c_ = pad_cols1; c_ < new_col_num - pad_cols2; c_++){
+        this->data_(r, c_, c) = temp_data(r-pad_rows1, c_-pad_cols1,c);
+      }
+    }
+  }
 }
 
 void Tensor<float>::Fill(float value) {
@@ -204,6 +235,9 @@ void Tensor<float>::Show() {
 void Tensor<float>::Flatten(bool row_major) {
   CHECK(!this->data_.empty());
   // 请补充代码
+  const uint32_t size = this->size(); 
+  const std::vector<uint32_t> shapes{size};
+  this->Reshape(shapes, row_major);
 }
 
 void Tensor<float>::Rand() {
