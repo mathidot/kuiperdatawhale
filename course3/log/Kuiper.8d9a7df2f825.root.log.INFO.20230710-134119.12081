@@ -1,0 +1,11 @@
+Log file created at: 2023/07/10 13:41:19
+Running on machine: 8d9a7df2f825
+Running duration (h:mm:ss): 0:00:00
+Log line format: [IWEF]yyyymmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I20230710 13:41:19.047544 12081 main.cpp:15] Start test...
+I20230710 13:41:19.094754 12081 test_ir.cpp:33] pnnx_input_0
+I20230710 13:41:19.094816 12081 test_ir.cpp:33] linear
+I20230710 13:41:19.094826 12081 test_ir.cpp:33] F.sigmoid_0
+I20230710 13:41:19.094834 12081 test_ir.cpp:33] pnnx_output_0
+E20230710 13:41:19.095013 12081 runtime_ir.cpp:36] Can not find the param path or bin path: course3/model_file/test_linear.pnnx.param course3/model_file/test_linear.pnnx.bin
+E20230710 13:41:19.095492 12081 runtime_ir.cpp:36] Can not find the param path or bin path: course3/model_file/test_linear.pnnx.param course3/model_file/test_linear.pnnx.bin

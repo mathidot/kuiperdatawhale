@@ -139,11 +139,59 @@ void RuntimeGraph::InitGraphParams(
   for (const auto &[name, parameter] : params) {
     const int type = parameter.type;
     switch (type) {
-    // 你要写的代码
-    // ...
-    default: {
-      LOG(FATAL) << "Unknown parameter type: " << type;
-    }
+      // 你要写的代码
+      case 2: {
+        // int
+        RuntimeParameterInt* runtime_parameter = new RuntimeParameterInt();
+        runtime_parameter->value = parameter.i;
+        runtime_operator->params.insert({name, runtime_parameter});
+        break;
+      } 
+      case 3: {
+        // float
+        RuntimeParameterFloat* runtime_parameter = new RuntimeParameterFloat();
+        runtime_parameter->value = parameter.f;
+        runtime_operator->params.insert({name, runtime_parameter});
+        break;
+      }
+      case 4: {
+        // string
+        RuntimeParameterString* runtime_parameter = new RuntimeParameterString();
+        runtime_parameter->value = parameter.s;
+        runtime_operator->params.insert({name, runtime_parameter});
+        break;
+      }
+      case 1: {
+        // bool
+        RuntimeParameterBool* runtime_parameter = new RuntimeParameterBool();
+        runtime_parameter->value = parameter.b;
+        runtime_operator->params.insert({name, runtime_parameter});
+        break;
+      }
+      case 5: {
+        // int array
+        RuntimeParameterIntArray* runtime_parameter = new RuntimeParameterIntArray();
+        runtime_parameter->value = parameter.ai;
+        runtime_operator->params.insert({name, runtime_parameter});
+        break;
+      }
+      case 7: {
+        // string array
+        RuntimeParameterStringArray* runtime_parameter = new RuntimeParameterStringArray();
+        runtime_parameter->value = parameter.as;
+        runtime_operator->params.insert({name, runtime_parameter});
+        break;
+      }
+      case 6: {
+        // float array
+        RuntimeParameterFloatArray* runtime_parameter = new RuntimeParameterFloatArray();
+        runtime_parameter->value = parameter.af;
+        runtime_operator->params.insert({name, runtime_parameter});
+        break;
+      }
+      default: {
+        LOG(FATAL) << "Unknown parameter type: " << type;
+      }
     }
   }
 }
@@ -153,18 +201,18 @@ void RuntimeGraph::InitGraphAttrs(
     const std::shared_ptr<RuntimeOperator> &runtime_operator) {
   for (const auto &[name, attr] : attrs) {
     switch (attr.type) {
-    case 1: {
-      std::shared_ptr<RuntimeAttribute> runtime_attribute =
-          std::make_shared<RuntimeAttribute>();
-      runtime_attribute->type = RuntimeDataType::kTypeFloat32;
-      runtime_attribute->weight_data = attr.data;
-      runtime_attribute->shape = attr.shape;
-      runtime_operator->attribute.insert({name, runtime_attribute});
-      break;
-    }
-    default: {
-      LOG(FATAL) << "Unknown attribute type: " << attr.type;
-    }
+      case 1: {
+        std::shared_ptr<RuntimeAttribute> runtime_attribute =
+            std::make_shared<RuntimeAttribute>();
+        runtime_attribute->type = RuntimeDataType::kTypeFloat32;
+        runtime_attribute->weight_data = attr.data;
+        runtime_attribute->shape = attr.shape;
+        runtime_operator->attribute.insert({name, runtime_attribute});
+        break;
+      }
+      default: {
+        LOG(FATAL) << "Unknown attribute type: " << attr.type;
+      }
     }
   }
 }

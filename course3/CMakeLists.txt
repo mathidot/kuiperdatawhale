@@ -10,6 +10,11 @@ find_package(LAPACK REQUIRED)
 find_package(GTest REQUIRED)
 
 set(link_lib glog::glog GTest::gtest)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
+
 if (!WIN32)
     set(link_lib "${link_lib} pthread")
 endif ()
