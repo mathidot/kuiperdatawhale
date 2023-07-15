@@ -1,0 +1,6 @@
+Log file created at: 2023/07/15 01:34:59
+Running on machine: 8d9a7df2f825
+Running duration (h:mm:ss): 0:00:00
+Log line format: [IWEF]yyyymmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I20230715 01:34:59.503863 23798 main.cpp:15] Start test...
+F20230715 01:34:59.573197 23798 tensor_utils.cpp:106] Check failed: shapes.size() == 3 

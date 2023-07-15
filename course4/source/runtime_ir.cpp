@@ -267,6 +267,7 @@ void RuntimeGraph::ReverseTopo(
     if (op != nullptr) {
       if (!op->has_forward) {
         this->ReverseTopo(op);
+        //this->NewReverseTopo(op);
       }
     }
   }
@@ -275,6 +276,25 @@ void RuntimeGraph::ReverseTopo(
   }
   this->topo_operators_.push_back(root_op);
 }
+
+void RuntimeGraph::NewReverseTopo(const std::shared_ptr<RuntimeOperator> &root_op){
+  CHECK(root_op != nullptr) << "current operator is nullptr";
+  std::queue<std::shared_ptr<RuntimeOperator>> q;
+  q.emplace(root_op);
+  while(!q.empty()){
+    const auto& top_op = q.front();
+    q.front();
+    top_op->has_forward = true;
+    this->topo_operators_.push_back(top_op);
+    const auto& next_ops = top_op->output_operators;
+    for(const auto &[_, op] : next_ops) {
+      if(op != nullptr && !op->has_forward) {
+        q.emplace(op);
+      }
+    }
+  }
+}
+
 
 void RuntimeGraph::InitGraphAttrs(
     const std::map<std::string, pnnx::Attribute> &attrs,

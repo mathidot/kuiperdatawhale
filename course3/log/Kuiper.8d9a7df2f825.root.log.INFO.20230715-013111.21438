@@ -1,0 +1,10 @@
+Log file created at: 2023/07/15 01:31:11
+Running on machine: 8d9a7df2f825
+Running duration (h:mm:ss): 0:00:00
+Log line format: [IWEF]yyyymmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I20230715 01:31:11.121367 21438 main.cpp:15] Start test...
+E20230715 01:31:11.146561 21438 runtime_ir.cpp:150] Can not find the param path or bin path: /home/kuiperdatawhale/course3/model_file/resnet18_batch1.param /home/kuiperdatawhale/course3/model_file/resnet18_batch1.pnnx.bin
+E20230715 01:31:11.147313 21438 runtime_ir.cpp:150] Can not find the param path or bin path: /home/kuiperdatawhale/course3/model_file/simple_ops.pnnx.param /home/kuiperdatawhale/course3/model_file/simple_ops.pnnx.bin
+E20230715 01:31:11.147408 21438 runtime_ir.cpp:150] Can not find the param path or bin path: /home/kuiperdatawhale/course3/model_file/simple_ops.pnnx.param /home/kuiperdatawhale/course3/model_file/simple_ops.pnnx.bin
+E20230715 01:31:11.147495 21438 runtime_ir.cpp:150] Can not find the param path or bin path: /home/kuiperdatawhale/course3/model_file/simple_ops.pnnx.param /home/kuiperdatawhale/course3/model_file/simple_ops.pnnx.bin
+E20230715 01:31:11.147581 21438 runtime_ir.cpp:150] Can not find the param path or bin path: /home/kuiperdatawhale/course3/model_file/simple_ops2.pnnx.param /home/kuiperdatawhale/course3/model_file/simple_ops2.pnnx.bin
